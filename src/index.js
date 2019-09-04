@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import zip from 'lodash/zip';
+// import _ from 'lodash';
 
 class Territory extends React.Component {
     render() {
@@ -9,12 +9,13 @@ class Territory extends React.Component {
             return <span>Loading...</span>;
         }
         let classname = "territory territory-type-" 
-        + this.props.territory_props[0]
+        + this.props.territory_props.territory_type
 
         return (
             <div className = {classname} >
                 <div className="number-token">
-                    <p>{this.props.territory_props[1][1]}</p>
+                    <p className="number">{this.props.territory_props.number}</p>
+                    <p className="probability-ticks">{this.props.territory_props.prob}</p>
                 </div>
             </div>
         )
@@ -84,6 +85,8 @@ class Board extends React.Component {
     }
 }
 
+
+// to-do: consider replacing with Lodash shuffle
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -105,27 +108,27 @@ function shuffle(array) {
 
 function piece_generator() {
     const number_chits = [
-        ["A",5,4],
-        ["B",2,1],
-        ["C",6,5],
-        ["D",3,2],
-        ["E",8,5],
-        ["F",10,3],
-        ["G",9,4],
-        ["H",12,1],
-        ["I",11,2],
-        ["J",4,3],
-        ["K",8,5],
-        ["L",10,3],
-        ["M",9,4],
-        ["N",4,3],
-        ["O",5,4],
-        ["P",6,5],
-        ["Q",3,2],
-        ["R",11,2]
+        {id:"A",number:5,prob:4},
+        {id:"B",number:2,prob:1},
+        {id:"C",number:6,prob:5},
+        {id:"D",number:3,prob:2},
+        {id:"E",number:8,prob:5},
+        {id:"F",number:10,prob:3},
+        {id:"G",number:9,prob:4},
+        {id:"H",number:12,prob:1},
+        {id:"I",number:11,prob:2},
+        {id:"J",number:4,prob:3},
+        {id:"K",number:8,prob:5},
+        {id:"L",number:10,prob:3},
+        {id:"M",number:9,prob:4},
+        {id:"N",number:4,prob:3},
+        {id:"O",number:5,prob:4},
+        {id:"P",number:6,prob:5},
+        {id:"Q",number:3,prob:2},
+        {id:"R",number:11,prob:2}
     ];
 
-    const terrain_map = [
+    const terrain_distribution = [
         ["wheat",4],
         ["forest",4],
         ["sheep",4],
@@ -135,17 +138,23 @@ function piece_generator() {
 
     // todo: simplify this
     let terrains = [];
-    terrain_map.forEach((t) => {
+    terrain_distribution.forEach((t) => {
         for(let i=0; i < t[1]; i++) {
             terrains.push(t[0]);
         }
     });
 
-    // const shuffled_terrains = ;
-    // const shuffled_numbers = ;
-    const pieces = zip(shuffle(terrains),shuffle(number_chits));
-    
-    pieces.splice(Math.floor(Math.random()*(pieces.length)),0,["desert",[null,null,null]]);
+    const numbers_shuffled = shuffle(number_chits)
+    const terrains_shuffled = shuffle(terrains)
+
+    const pieces = []
+    for (let i=0; i < numbers_shuffled.length; i++){
+        pieces[i] = numbers_shuffled[i]
+        pieces[i].territory_type = terrains_shuffled[i]
+    }
+
+    pieces.splice(Math.floor(Math.random()*(pieces.length+1)),0,
+        {id:"X",number:0,prob:0,territory_type:"desert"});
 
     console.log(pieces)
     return pieces;
