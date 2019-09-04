@@ -9,13 +9,14 @@ class Territory extends React.Component {
             return <span>Loading...</span>;
         }
         let classname = "territory territory-type-" 
-        + this.props.territory_props.territory_type
+        + this.props.territory_props.territory_type + " prob-"
+        + this.props.territory_props.prob;
 
         return (
             <div className = {classname} >
                 <div className="number-token">
                     <p className="number">{this.props.territory_props.number}</p>
-                    <p className="probability-ticks">{this.props.territory_props.prob}</p>
+                    <p className="probability-ticks">{this.props.territory_props.prob_display}</p>
                 </div>
             </div>
         )
@@ -89,15 +90,9 @@ class Board extends React.Component {
 // to-do: consider replacing with Lodash shuffle
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -149,8 +144,9 @@ function piece_generator() {
 
     const pieces = []
     for (let i=0; i < numbers_shuffled.length; i++){
-        pieces[i] = numbers_shuffled[i]
-        pieces[i].territory_type = terrains_shuffled[i]
+        pieces[i] = numbers_shuffled[i];
+        pieces[i].territory_type = terrains_shuffled[i];
+        pieces[i].prob_display = "∙".repeat(numbers_shuffled[i].prob);
     }
 
     pieces.splice(Math.floor(Math.random()*(pieces.length+1)),0,
