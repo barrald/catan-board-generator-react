@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import zip from 'lodash/zip';
 
 class Territory extends React.Component {
     render() {
@@ -11,9 +12,9 @@ class Territory extends React.Component {
         + this.props.territory_props[0]
 
         return (
-            <div class = {classname} >
-                <div class="number-token">
-                    <p>{this.props.territory_props[2]}</p>
+            <div className = {classname} >
+                <div className="number-token">
+                    <p>{this.props.territory_props[1][1]}</p>
                 </div>
             </div>
         )
@@ -38,45 +39,45 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div class="board">
-                <div class="board-row">
-                    <div class="spacer"></div>
+            <div className="board">
+                <div className="board-row">
+                    <div className="spacer"></div>
                     {this.renderTerritory(0)}
                     {this.renderTerritory(1)}
                     {this.renderTerritory(2)}
-                    <div class="spacer"></div>
+                    <div className="spacer"></div>
                 </div>
-                <div class="board-row">
-                    <div class="spacer"></div>
+                <div className="board-row">
+                    <div className="spacer"></div>
                     {this.renderTerritory(3)}
                     {this.renderTerritory(4)}
                     {this.renderTerritory(5)}
                     {this.renderTerritory(6)}
-                    <div class="spacer"></div>
+                    <div className="spacer"></div>
                 </div>
-                <div class="board-row">
-                    <div class="spacer"></div>
+                <div className="board-row">
+                    <div className="spacer"></div>
                     {this.renderTerritory(7)}
                     {this.renderTerritory(8)}
                     {this.renderTerritory(9)}
                     {this.renderTerritory(10)}
                     {this.renderTerritory(11)}
-                    <div class="spacer"></div>
+                    <div className="spacer"></div>
                 </div>
-                <div class="board-row">
-                    <div class="spacer"></div>
+                <div className="board-row">
+                    <div className="spacer"></div>
                     {this.renderTerritory(12)}
                     {this.renderTerritory(13)}
                     {this.renderTerritory(14)}
                     {this.renderTerritory(15)}
-                    <div class="spacer"></div>
+                    <div className="spacer"></div>
                 </div>
-                <div class="board-row">
-                    <div class="spacer"></div>
+                <div className="board-row">
+                    <div className="spacer"></div>
                     {this.renderTerritory(16)}
                     {this.renderTerritory(17)}
                     {this.renderTerritory(18)}
-                    <div class="spacer"></div>
+                    <div className="spacer"></div>
                 </div>
              </div>
         )
@@ -129,8 +130,7 @@ function piece_generator() {
         ["forest",4],
         ["sheep",4],
         ["ore",3],
-        ["brick",3],
-        ["desert",1]
+        ["brick",3]
     ];
 
     // todo: simplify this
@@ -141,18 +141,12 @@ function piece_generator() {
         }
     });
 
-    const shuffled_terrains = shuffle(terrains);
-    console.log(shuffled_terrains)
-    const shuffled_numbers = shuffle(number_chits);
-    const desert_position = shuffled_terrains.indexOf("desert");
-    const shuff_terrains_no_desert = terrains.filter(terrain => terrain !== "desert")
-    console.log(shuff_terrains_no_desert)
-    let pieces = [];
-    for(let i=0; i < shuff_terrains_no_desert.length; i++) {
-        let piece = [shuff_terrains_no_desert[i],shuffled_numbers[i]];
-        pieces.push(piece.flat());
-    }
-    pieces.splice(desert_position,0,["desert",null])
+    // const shuffled_terrains = ;
+    // const shuffled_numbers = ;
+    const pieces = zip(shuffle(terrains),shuffle(number_chits));
+    
+    pieces.splice(Math.floor(Math.random()*(pieces.length)),0,["desert",[null,null,null]]);
+
     console.log(pieces)
     return pieces;
 }
