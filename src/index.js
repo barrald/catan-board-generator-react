@@ -41,23 +41,24 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div className="board">
-                <div className="board-row">
+            <div className="container">
+                <div className="board">
+                    
+                    <div className="spacer"></div>
                     <div className="spacer"></div>
                     {this.renderTerritory(0)}
                     {this.renderTerritory(1)}
                     {this.renderTerritory(2)}
                     <div className="spacer"></div>
-                </div>
-                <div className="board-row">
+                    <div className="spacer"></div>
+
                     <div className="spacer"></div>
                     {this.renderTerritory(3)}
                     {this.renderTerritory(4)}
                     {this.renderTerritory(5)}
                     {this.renderTerritory(6)}
                     <div className="spacer"></div>
-                </div>
-                <div className="board-row">
+
                     <div className="spacer"></div>
                     {this.renderTerritory(7)}
                     {this.renderTerritory(8)}
@@ -65,16 +66,14 @@ class Board extends React.Component {
                     {this.renderTerritory(10)}
                     {this.renderTerritory(11)}
                     <div className="spacer"></div>
-                </div>
-                <div className="board-row">
+
                     <div className="spacer"></div>
                     {this.renderTerritory(12)}
                     {this.renderTerritory(13)}
                     {this.renderTerritory(14)}
                     {this.renderTerritory(15)}
                     <div className="spacer"></div>
-                </div>
-                <div className="board-row">
+                    
                     <div className="spacer"></div>
                     {this.renderTerritory(16)}
                     {this.renderTerritory(17)}
