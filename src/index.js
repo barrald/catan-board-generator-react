@@ -44,13 +44,23 @@ class Board extends React.Component {
             <div className="board">
                 <div className="board-row">
                     <div className="spacer"></div>
-                    {this.renderTerritory(0)}
-                    {this.renderTerritory(1)}
-                    {this.renderTerritory(2)}
+                    <div className="port port-left">?</div>
+                    <div className="spacer"></div>
+                    <div className="port port-left">🐑</div>
+                    <div className="spacer"></div>
                     <div className="spacer"></div>
                 </div>
                 <div className="board-row">
                     <div className="spacer"></div>
+                    <div className="spacer"></div>
+                    {this.renderTerritory(0)}
+                    {this.renderTerritory(1)}
+                    {this.renderTerritory(2)}
+                    <div className="port port-right">⛏</div>
+                    <div className="spacer"></div>
+                </div>
+                <div className="board-row">
+                    <div className="port port-left">🌲</div>
                     {this.renderTerritory(3)}
                     {this.renderTerritory(4)}
                     {this.renderTerritory(5)}
@@ -64,10 +74,10 @@ class Board extends React.Component {
                     {this.renderTerritory(9)}
                     {this.renderTerritory(10)}
                     {this.renderTerritory(11)}
-                    <div className="spacer"></div>
+                    <div className="port port-right">🐑</div>
                 </div>
                 <div className="board-row">
-                    <div className="spacer"></div>
+                    <div className="port port-left">🌾</div>
                     {this.renderTerritory(12)}
                     {this.renderTerritory(13)}
                     {this.renderTerritory(14)}
@@ -76,9 +86,19 @@ class Board extends React.Component {
                 </div>
                 <div className="board-row">
                     <div className="spacer"></div>
+                    <div className="spacer"></div>
                     {this.renderTerritory(16)}
                     {this.renderTerritory(17)}
                     {this.renderTerritory(18)}
+                    <div className="port port-right">🧱</div>
+                    <div className="spacer"></div>
+                </div>
+                <div className="board-row">
+                    <div className="spacer"></div>
+                    <div className="port port-left">?</div>
+                    <div className="spacer"></div>
+                    <div className="port port-left">🐑</div>
+                    <div className="spacer"></div>
                     <div className="spacer"></div>
                 </div>
              </div>

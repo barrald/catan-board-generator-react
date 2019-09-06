@@ -16,12 +16,29 @@
 
 .board-row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 1000px;
 }
 
+.port {
+    width: 104px;
+    position: relative;
+    top: 50px;
+    padding-top: 10px;
+    font-size: 2em;
+}
+
+.port-left {
+    text-align: right;
+    padding-right: 16px;
+}
+
+.port-right{
+    padding-left: 16px;
+}
+
 .spacer {
-    flex-grow: 2;
+    width: 104px;
 }
 
 .territory:before {
@@ -34,8 +51,7 @@
     top: -30px;
 }
 
-.territory { 
-    width: 200px;
+.territory {
     display: flex;
     align-content: center;
     justify-content: center;
