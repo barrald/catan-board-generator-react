@@ -27,7 +27,8 @@ class Board extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            board_pieces: piece_generator()
+            board_pieces: piece_generator(),
+            board_ports: port_generator()
         }
     }
 
@@ -41,43 +42,64 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="board">
-                    
+            <div className="board">
+                <div className="board-row">
+                    <div className="spacer"></div>
+                    <div className="port port-left">?</div>
+                    <div className="spacer"></div>
+                    <div className="port port-left">🐑</div>
+                    <div className="spacer"></div>
+                    <div className="spacer"></div>
+                </div>
+                <div className="board-row">
                     <div className="spacer"></div>
                     <div className="spacer"></div>
                     {this.renderTerritory(0)}
                     {this.renderTerritory(1)}
                     {this.renderTerritory(2)}
+                    <div className="port port-right">⛏</div>
                     <div className="spacer"></div>
-                    <div className="spacer"></div>
-
-                    <div className="spacer"></div>
+                </div>
+                <div className="board-row">
+                    <div className="port port-left">🌲</div>
                     {this.renderTerritory(3)}
                     {this.renderTerritory(4)}
                     {this.renderTerritory(5)}
                     {this.renderTerritory(6)}
                     <div className="spacer"></div>
-
+                </div>
+                <div className="board-row">
                     <div className="spacer"></div>
                     {this.renderTerritory(7)}
                     {this.renderTerritory(8)}
                     {this.renderTerritory(9)}
                     {this.renderTerritory(10)}
                     {this.renderTerritory(11)}
-                    <div className="spacer"></div>
-
-                    <div className="spacer"></div>
+                    <div className="port port-right">🐑</div>
+                </div>
+                <div className="board-row">
+                    <div className="port port-left">🌾</div>
                     {this.renderTerritory(12)}
                     {this.renderTerritory(13)}
                     {this.renderTerritory(14)}
                     {this.renderTerritory(15)}
                     <div className="spacer"></div>
-                    
+                </div>
+                <div className="board-row">
+                    <div className="spacer"></div>
                     <div className="spacer"></div>
                     {this.renderTerritory(16)}
                     {this.renderTerritory(17)}
                     {this.renderTerritory(18)}
+                    <div className="port port-right">🧱</div>
+                    <div className="spacer"></div>
+                </div>
+                <div className="board-row">
+                    <div className="spacer"></div>
+                    <div className="port port-left">?</div>
+                    <div className="spacer"></div>
+                    <div className="port port-left">🐑</div>
+                    <div className="spacer"></div>
                     <div className="spacer"></div>
                 </div>
              </div>
@@ -153,6 +175,19 @@ function piece_generator() {
 
     console.log(pieces)
     return pieces;
+}
+
+function port_generator() {
+    const port_types = [
+        {type:"wheat",icon=""},
+        {type:"sheep",icon=""},
+        {type:"ore",icon=""},
+        {type:"forest",icon=""},
+        {type:"brick",icon=""}
+    ];
+
+    shuffled_ports = shuffle(port_types);
+    return shuffled_ports;
 }
 
 ReactDOM.render(
